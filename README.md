@@ -1,4 +1,4 @@
-# Renton Technical College CSI-246
+# Renton Technical College CSI-248
 
 <br />
 
@@ -7,7 +7,7 @@
     <h3 align="center">Example Code</h3>
 </div>
 
-This repository is a part of CSI-246 at Renton Technical College. This repo will be updated after each class with example code from the lectures.
+This repository is a part of CSI-248 at Renton Technical College. This repo will be updated after each class with example code from the lectures.
 
 ## How to access the example code
 
