@@ -1,83 +1,122 @@
-// App.js
+// App.js - Main application demonstrating different styling approaches in React Native
 import React from "react";
-import { SafeAreaView, ScrollView, Text, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, Text, StyleSheet, View } from "react-native";
 import UserCard from "./components/UserCard";
 import StyledInComponent from "./components/StyledInComponent";
 import StyleWithProps from "./components/StyleWithProps";
 
-const App = () => {
-  const users = [
-    {
-      userName: "john_doe",
-      phoneNumber: "123-456-7890",
-      email: "john@example.com",
-      address: "123 Main Street, Cityville",
-    },
-    {
-      userName: "jane_smith",
-      phoneNumber: "987-654-3210",
-      email: "jane@example.com",
-      address: "456 Elm Street, Townsville",
-    },
-    {
-      userName: "bob_jackson",
-      phoneNumber: "555-123-4567",
-      email: "bob@example.com",
-      address: "789 Oak Street, Villageton",
-    },
-  ];
+// Sample user data
+const users = [
+  {
+    userName: "John Doe",
+    phoneNumber: "(123) 456-7890",
+    email: "john.doe@example.com",
+    address: "123 Main Street, Cityville, ST 12345",
+  },
+  {
+    userName: "Jane Smith",
+    phoneNumber: "(987) 654-3210",
+    email: "jane.smith@example.com",
+    address: "456 Elm Avenue, Townsville, ST 67890",
+  },
+  {
+    userName: "Bob Jackson",
+    phoneNumber: "(555) 123-4567",
+    email: "bob.jackson@example.com",
+    address: "789 Oak Drive, Villageton, ST 13579",
+  },
+];
 
+const App = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <Text style={styles.heading}>App</Text>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.mainTitle}>Styling Demo</Text>
 
-        <UserCard
-          userName="test user"
-          phoneNumber="123-456-7890"
-          email="none@none.com"
-          address="123 anywhere lane"
-        />
-
-        <StyledInComponent
-          userName="test user"
-          phoneNumber="123-456-7890"
-          email="none@none.com"
-          address="123 anywhere lane"
-        />
-
-        <StyleWithProps
-          backgroundColor="darkBlue"
-          color="white"
-          userName="test user"
-          phoneNumber="123-456-7890"
-          email="none@none.com"
-          address="123 anywhere lane"
-        />
-
-        {users.map((user, index) => (
+        {/* Section 1: Default Styling */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>1. Default Styling</Text>
+          <Text style={styles.sectionDescription}>
+            Using StyleSheet with predefined styles
+          </Text>
           <UserCard
-            key={index}
-            userName={user.userName}
-            phoneNumber={user.phoneNumber}
-            email={user.email}
-            address={user.address}
+            userName={users[0].userName}
+            phoneNumber={users[0].phoneNumber}
+            email={users[0].email}
+            address={users[0].address}
           />
-        ))}
+        </View>
+
+        {/* Section 2: Styled In Component */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>2. Component-Specific Styling</Text>
+          <Text style={styles.sectionDescription}>
+            Styling composed within the component
+          </Text>
+          <StyledInComponent
+            userName={users[1].userName}
+            phoneNumber={users[1].phoneNumber}
+            email={users[1].email}
+            address={users[1].address}
+          />
+        </View>
+
+        {/* Section 3: Props-based Styling */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>3. Props-Based Styling</Text>
+          <Text style={styles.sectionDescription}>
+            Dynamic styling through props
+          </Text>
+          {users.map((user, index) => (
+            <StyleWithProps
+              key={index}
+              backgroundColor="lavender"
+              color="purple"
+              userName={user.userName}
+              phoneNumber={user.phoneNumber}
+              email={user.email}
+              address={user.address}
+            />
+          ))}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  // Container styles
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "whitesmoke",
   },
-  heading: {
-    fontSize: 24,
-    fontWeight: "bold",
-    margin: 16,
+  scrollContent: {
+    padding: 16,
+  },
+  // Title styles
+  mainTitle: {
+    fontSize: 32,
+    fontWeight: "700",
+    color: "black",
+    marginBottom: 24,
+    textAlign: "center",
+    letterSpacing: 0.5,
+  },
+  // Section styles
+  section: {
+    marginBottom: 32,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: "600",
+    color: "dimgray",
+    marginBottom: 8,
+  },
+  sectionDescription: {
+    fontSize: 16,
+    color: "gray",
+    marginBottom: 16,
+    fontStyle: "italic",
   },
 });
 
