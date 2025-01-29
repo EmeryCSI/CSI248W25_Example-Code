@@ -1,0 +1,13 @@
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+
+export default function Item({ itemId, itemDetails }) {
+  return (
+    <View>
+      <Text>Item ID: {itemId}</Text>
+      <Text>Item Details: {itemDetails}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({});

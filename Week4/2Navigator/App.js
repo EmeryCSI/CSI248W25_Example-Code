@@ -20,7 +20,12 @@ function HomeScreen({ navigation }) {
       {/* navigate("name of screen to switch to") */}
       <Button
         title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
+        onPress={() =>
+          navigation.navigate("Details", {
+            itemId: 86,
+            itemDetails: "anything you want here",
+          })
+        }
       ></Button>
     </View>
   );
@@ -34,6 +39,7 @@ export default function App() {
       {/* You can set options in the Navigator */}
       <Stack.Navigator
         initialRouteName="Home"
+        // Screenoptions is
         screenOptions={{
           headerStyle: {
             backgroundColor: "lightblue",
@@ -44,7 +50,11 @@ export default function App() {
         {/* A name and a component */}
         <Stack.Screen name="Home" component={HomeScreen}></Stack.Screen>
         <Stack.Screen name="Details" component={DetailsScreen}></Stack.Screen>
-        <Stack.Screen name="About" component={AboutScreen}></Stack.Screen>
+        <Stack.Screen
+          name="About"
+          component={AboutScreen}
+          options={{ title: "This is the About Screen" }}
+        ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
