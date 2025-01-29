@@ -7,11 +7,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DetailsScreen from "./screens/DetailsScreen";
 import AboutScreen from "./screens/AboutScreen";
 
-//get the stack from the create function
+// Create a stack navigator
 const Stack = createNativeStackNavigator();
 
-//navigation prop
-//this is provided automatically to any screens in the navigator
+// HomeScreen component
+// This is the initial screen of the app
+// It contains a button to navigate to the Details screen
 function HomeScreen({ navigation }) {
   return (
     <View>
@@ -31,6 +32,9 @@ function HomeScreen({ navigation }) {
   );
 }
 
+// App component
+// This is the main component that wraps the entire application in a NavigationContainer
+// It sets up the stack navigator and defines the screens
 export default function App() {
   return (
     //Wrap the entire application in a NavContainer
