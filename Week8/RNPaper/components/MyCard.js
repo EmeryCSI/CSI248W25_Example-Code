@@ -26,8 +26,6 @@ export default function MyCard() {
       </Card.Content>
       <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
       <Card.Actions>
-        {/* Cancel gets default color */}
-        <Button>Cancel</Button>
         <Button mode="contained-tonal">Submit</Button>
         {/* Buttons can have icons */}
         <Button
