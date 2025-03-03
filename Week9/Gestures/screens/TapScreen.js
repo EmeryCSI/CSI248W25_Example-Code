@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Animated } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 
 export default function TapScreen() {
   // State to track tap counts and display messages
   const [tapCount, setTapCount] = useState(0);
+  // State used to display the last tap type
   const [lastTapType, setLastTapType] = useState("None");
-
-  // Create an Animated Value for scaling animation
-  const scale = new Animated.Value(1);
 
   // Create a single tap gesture
   const singleTap = Gesture.Tap()
@@ -20,20 +18,6 @@ export default function TapScreen() {
       // This callback is fired when the tap starts
       setLastTapType("Single Tap");
       setTapCount((prev) => prev + 1);
-
-      // Create a spring animation for visual feedback
-      Animated.sequence([
-        Animated.spring(scale, {
-          toValue: 0.9,
-          useNativeDriver: true,
-          speed: 20,
-        }),
-        Animated.spring(scale, {
-          toValue: 1,
-          useNativeDriver: true,
-          speed: 20,
-        }),
-      ]).start();
     });
 
   // Create a double tap gesture
@@ -45,20 +29,6 @@ export default function TapScreen() {
     .onStart(() => {
       setLastTapType("Double Tap");
       setTapCount((prev) => prev + 1);
-
-      // Create a more pronounced animation for double tap
-      Animated.sequence([
-        Animated.spring(scale, {
-          toValue: 1.2,
-          useNativeDriver: true,
-          speed: 20,
-        }),
-        Animated.spring(scale, {
-          toValue: 1,
-          useNativeDriver: true,
-          speed: 20,
-        }),
-      ]).start();
     });
 
   // Compose the gestures to handle both single and double taps
@@ -80,26 +50,19 @@ export default function TapScreen() {
 
       {/* Wrap the demo area in GestureDetector to enable gesture handling */}
       <GestureDetector gesture={gesture}>
-        <Animated.View
-          style={[
-            styles.demoArea,
-            {
-              transform: [{ scale }],
-            },
-          ]}
-        >
+        <View style={styles.demoArea}>
           <Text style={styles.instruction}>Tap or Double Tap Here</Text>
-        </Animated.View>
+        </View>
       </GestureDetector>
 
       {/* Instructions */}
       <View style={styles.instructionsContainer}>
         <Text style={styles.instructionTitle}>How it works:</Text>
         <Text style={styles.instructionText}>
-          • Single tap for small scale animation
+          • Single tap will register as a single tap event
         </Text>
         <Text style={styles.instructionText}>
-          • Double tap for large scale animation
+          • Double tap will register as a double tap event
         </Text>
         <Text style={styles.instructionText}>
           • Watch the counter and last tap type update
